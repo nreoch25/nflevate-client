@@ -40,6 +40,12 @@ class Header extends Component {
             <Link to="/" className="navbar-brand">NFLevate</Link>
           </div>
           <div className="collapse navbar-collapse" id="myNavbar">
+            <ul className="nav navbar-nav">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/feature">Feature</Link></li>
+              <li><a href="#">Page 2</a></li>
+              <li><a href="#">Page 3</a></li>
+            </ul>
             <ul className="nav navbar-nav navbar-right">
               {this.renderLinks()}
             </ul>
