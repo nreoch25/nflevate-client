@@ -8,18 +8,18 @@ class Header extends Component {
     if(this.props.authenticated) {
       // show a link to sign out
       return (
-        <li className="nav-item">
-          <Link className="nav-link" to="/signout">Sign Out</Link>
+        <li>
+          <Link to="/signout"><span className="glyphicon glyphicon-log-in"></span> Sign Out</Link>
         </li>
       );
     } else {
       // show a link to sign in or sign up
       return [
-        <li className="nav-item" key={1}>
-          <Link className="nav-link" to="/signin">Sign In</Link>
+        <li key={1}>
+          <Link to="/signin"><span className="glyphicon glyphicon-log-in"></span> Sign In</Link>
         </li>,
-        <li className="nav-item" key={2}>
-          <Link className="nav-link" to="/signup">Sign Up</Link>
+        <li key={2}>
+          <Link to="/signup"><span className="glyphicon glyphicon-user"></span> Sign Up</Link>
         </li>
       ]
 
@@ -29,11 +29,22 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-light">
-        <Link to="/" className="navbar-brand">NFLevate</Link>
-        <ul className="nav navbar-nav">
-          {this.renderLinks()}
-        </ul>
+      <nav className="navbar navbar-inverse navbar-fixed-top">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <Link to="/" className="navbar-brand">NFLevate</Link>
+          </div>
+          <div className="collapse navbar-collapse" id="myNavbar">
+            <ul className="nav navbar-nav navbar-right">
+              {this.renderLinks()}
+            </ul>
+          </div>
+        </div>
       </nav>
     );
   }
