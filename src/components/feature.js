@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import Players from "./draft/players";
 
 class Feature extends Component {
   componentWillMount() {
@@ -8,7 +9,10 @@ class Feature extends Component {
   }
   render() {
     return (
-      <div>{this.props.message}</div>
+      <div>
+        {this.props.message}
+        <Players />
+      </div>
     );
   }
 }
