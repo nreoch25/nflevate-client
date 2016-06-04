@@ -1,6 +1,6 @@
 import axios from "axios";
 import { browserHistory } from "react-router";
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE } from "./types";
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from "./types";
 const API_URL = "http://localhost:8000";
 
 export function signinUser({ email, password }) {
@@ -14,7 +14,7 @@ export function signinUser({ email, password }) {
         // - Save the JWT token
         localStorage.setItem("token", response.data.token);
         // - Redirect to the route "/feature"
-        browserHistory.push("/feature");
+        browserHistory.push("/rankings");
       })
       .catch(() => {
         //If Request is bad...
@@ -51,17 +51,4 @@ export function signoutUser() {
   return {
     type: UNAUTH_USER
   };
-}
-export function fetchMessage() {
-  return function(dispatch) {
-    axios.get(API_URL, {
-      headers: { authorization: localStorage.getItem("token") }
-    })
-      .then(response => {
-        dispatch({
-          type: FETCH_MESSAGE,
-          payload: response.data.message
-        });
-      });
-  }
 }
