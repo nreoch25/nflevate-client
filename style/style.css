@@ -4,9 +4,30 @@
 .error {
   color:red;
 }
+#rankings_nav {
+  margin-bottom:10px;
+}
 .table th, .table td {
   padding: 5px 0 5px 10px;
 }
 .table-bordered thead tr th, .table-bordered thead tr td {
   border-bottom-width: 1px;
+}
+tr.QB {
+  background-color: #F2A29D;
+}
+tr.RB {
+  background-color: #B8CAEA;
+}
+tr.WR {
+  background-color: #9DF2A7;
+}
+tr.DEF {
+  background-color: #CDBE70;
+}
+tr.TE {
+  background-color: #F2E09D;
+}
+tr.PK {
+  background-color: #E99DF2;
 }

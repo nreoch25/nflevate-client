@@ -15,11 +15,12 @@ class Players extends Component {
     } else {
       let players = [];
       this.props.players.map(player => {
+        let pos = player.pos.toUpperCase();
         players.push(
-          <tr key={player.rank}>
+          <tr key={player.rank} className={pos}>
             <td>{player.rank}</td>
             <td>{player.name}</td>
-            <td>{player.pos}</td>
+            <td>{pos}</td>
             <td>{player.team}</td>
             <td>{player.bye}</td>
           </tr>
