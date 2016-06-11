@@ -21,10 +21,18 @@ export function fetchPlayers() {
 
 export function fetchPlayersByPosition(pos) {
   let position = pos.toLowerCase();
+  let newPlayers = [];
   return(dispatch) => {
-    let newPlayers = players.filter((player) => {
-      return player.pos === position;
+    if( position === "all" ) {
+      newPlayers = players;
+    } else {
+      newPlayers = players.filter((player, i) => {
+        return player.pos === position;
+      });
+    }
+    dispatch({
+      type: FETCH_PLAYERS_BY_POSITION,
+      payload: newPlayers
     });
-    console.log(newPlayers);
   }
 }
