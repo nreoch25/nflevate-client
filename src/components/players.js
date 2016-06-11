@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPlayers } from "../../actions/draft";
+import { fetchPlayers } from "../actions/players";
 
 class Players extends Component {
 
@@ -10,7 +10,6 @@ class Players extends Component {
 
   getPlayers() {
     if(!this.props.players) {
-      console.log("here");
       return;
     } else {
       let players = [];
