@@ -14,7 +14,7 @@ export function signinUser({ email, password }) {
         // - Save the JWT token
         localStorage.setItem("token", response.data.token);
         // - Redirect to the route "/feature"
-        browserHistory.push("/rankings");
+        browserHistory.push("/draft");
       })
       .catch(() => {
         //If Request is bad...

@@ -1,9 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 
 class Header extends Component {
-
+  componentDidMount() {
+    const currentNav = window.location.pathname.replace("/", "");
+    const activeNav = ( currentNav === "" ) ? "home" : currentNav;
+    window.jQuery(`#nav-${activeNav}`).addClass("active");
+  }
   renderLinks() {
     if(this.props.authenticated) {
       // show a link to sign out
@@ -40,9 +44,10 @@ class Header extends Component {
             <Link to="/" className="navbar-brand">NFLevate</Link>
           </div>
           <div className="collapse navbar-collapse" id="myNavbar">
-            <ul className="nav navbar-nav">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/rankings">Rankings</Link></li>
+            <ul id="app_nav" className="nav navbar-nav">
+              <li id="nav-home"><Link to="/">Home</Link></li>
+              <li id="nav-draft"><Link to="/draft">Draft</Link></li>
+              <li id="nav-rankings"><Link to="/rankings">Rankings</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               {this.renderLinks()}

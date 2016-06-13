@@ -10,6 +10,7 @@ import Index from "./components/index";
 import Signin from "./components/auth/signin";
 import Signout from "./components/auth/signout";
 import Signup from "./components/auth/signup";
+import Draft from "./components/draft";
 import Rankings from "./components/rankings";
 import RequireAuth from "./components/auth/require_auth";
 import reducers from './reducers';
@@ -25,6 +26,14 @@ if(token) {
   store.dispatch({ type: AUTH_USER });
 }
 
+browserHistory.listen((evt) => {
+  console.log("listen");
+  const currentNav = evt.pathname.replace("/", "");
+  const activeNav = ( currentNav === "" ) ? "home" : currentNav;
+  window.jQuery("#app_nav li").removeClass("active");
+  window.jQuery(`#nav-${activeNav}`).addClass("active");
+});
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -33,6 +42,7 @@ ReactDOM.render(
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
+        <Route path="draft" component={RequireAuth(Draft)} />
         <Route path="rankings" component={RequireAuth(Rankings)} />
       </Route>
     </Router>

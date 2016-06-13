@@ -4,8 +4,19 @@
 .error {
   color:red;
 }
+.row {
+  margin-left:0;
+  margin-right:0;
+}
+.col-sm-6 {
+  padding-left:0;
+  padding-right:0;
+}
 #rankings_nav {
   margin-bottom:10px;
+}
+#players_draft tbody tr {
+  cursor:pointer;
 }
 .table th, .table td {
   padding: 5px 0 5px 10px;
@@ -30,4 +41,7 @@ tr.TE {
 }
 tr.PK {
   background-color: #E99DF2;
+}
+#draftboard th {
+  width:7em;
 }

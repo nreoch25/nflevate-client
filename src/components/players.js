@@ -30,23 +30,22 @@ class Players extends Component {
   }
 
   render() {
+    const rankingsID = `players_${this.props.type}`;
     return(
-      <div>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Team</th>
-              <th>Bye</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.getPlayers() }
-          </tbody>
-        </table>
-      </div>
+      <table id={rankingsID} className="table table-bordered">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Bye</th>
+          </tr>
+        </thead>
+        <tbody>
+          { this.getPlayers() }
+        </tbody>
+      </table>
     );
   }
 }
