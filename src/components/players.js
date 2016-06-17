@@ -8,6 +8,10 @@ class Players extends Component {
     this.props.fetchPlayers();
   }
 
+  pickPlayer(evt) {
+    console.log(evt.currentTarget);
+  }
+
   getPlayers() {
     if(!this.props.players) {
       return;
@@ -16,7 +20,7 @@ class Players extends Component {
       this.props.players.map(player => {
         let pos = player.pos.toUpperCase();
         players.push(
-          <tr key={player.rank} className={pos}>
+          <tr key={player.rank} onClick={ (evt) => this.pickPlayer(evt) } className={pos}>
             <td>{player.rank}</td>
             <td>{player.name}</td>
             <td>{pos}</td>
@@ -32,7 +36,7 @@ class Players extends Component {
   render() {
     const rankingsID = `players_${this.props.type}`;
     return(
-      <table id={rankingsID} className="table table-bordered">
+      <table id={rankingsID} className="table table-bordered table-hover">
         <thead>
           <tr>
             <th>Rank</th>
@@ -52,7 +56,7 @@ class Players extends Component {
 
 function mapStateToProps(state) {
   return {
-    players: state.draft.players
+    players: state.players.players
   }
 }
 

@@ -1,11 +1,9 @@
-import { FETCH_PLAYERS, FETCH_PLAYERS_BY_POSITION } from "../actions/types";
+import { FETCH_PICK_POSITION } from "../actions/types";
 
-export default function(state = {}, action) {
+export default function(state = { position: {}, picks: {} }, action) {
   switch(action.type) {
-    case FETCH_PLAYERS:
-      return { ...state, players: action.payload }
-    case FETCH_PLAYERS_BY_POSITION:
-      return { ...state, players: action.payload }
+    case FETCH_PICK_POSITION:
+      return { ...state, position: action.payload }
   }
   return state;
 }
