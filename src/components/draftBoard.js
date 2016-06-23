@@ -35,6 +35,16 @@ class DraftBoard extends Component {
           <tbody>
             <tr id="round1">
               <td>1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
           </tbody>
         </table>

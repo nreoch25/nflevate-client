@@ -9,7 +9,9 @@ class Players extends Component {
   }
 
   pickPlayer(evt) {
-    console.log(evt.currentTarget);
+    if(evt.currentTarget.parentNode.parentNode.id === "players_draft") {
+      console.log(evt.currentTarget);
+    }
   }
 
   getPlayers() {

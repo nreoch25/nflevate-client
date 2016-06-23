@@ -45,3 +45,6 @@ tr.PK {
 #draftboard th {
   width:7em;
 }
+#draftboard tbody tr {
+  height: 70px;
+}
