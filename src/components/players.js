@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPlayers } from "../actions/players";
+import { draftPick } from "../actions/draft";
 
 class Players extends Component {
 
   componentWillMount() {
     this.props.fetchPlayers();
   }
-
+  parsePick(pick) {
+    let playerElements = pick.getElementsByTagName("td");
+    let draftPickObject = {
+      "rank": playerElements[0].innerText,
+      "name": playerElements[1].innerText,
+      "pos": playerElements[2].innerText,
+      "team": playerElements[3].innerText,
+      "bye": playerElements[4].innerText
+    }
+    this.props.draftPick(draftPickObject);
+  }
   pickPlayer(evt) {
     if(evt.currentTarget.parentNode.parentNode.id === "players_draft") {
-      console.log(evt.currentTarget);
+      this.parsePick(evt.currentTarget);
     }
   }
 
@@ -62,4 +73,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPlayers })(Players);
+export default connect(mapStateToProps, { fetchPlayers, draftPick })(Players);

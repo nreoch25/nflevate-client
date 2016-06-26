@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPickPosition, fetchDraftedPicks } from "../actions/draft";
+import { fetchPickPosition } from "../actions/draft";
 
 class DraftBoard extends Component {
   componentDidMount() {
     this.props.fetchPickPosition();
-    this.props.fetchDraftedPicks();
   }
   getPickPosition() {
     if(typeof this.props.draft.position.round !== "undefined") {
@@ -75,4 +74,4 @@ function mapStateToProps(state) {
   return { draft: state.draft }
 }
 
-export default connect(mapStateToProps, { fetchPickPosition, fetchDraftedPicks })(DraftBoard);
+export default connect(mapStateToProps, { fetchPickPosition })(DraftBoard);
