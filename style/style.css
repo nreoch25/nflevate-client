@@ -24,22 +24,22 @@
 .table-bordered thead tr th, .table-bordered thead tr td {
   border-bottom-width: 1px;
 }
-tr.QB {
+tr.QB, td.QB {
   background-color: #F2A29D;
 }
-tr.RB {
+tr.RB, td.RB {
   background-color: #B8CAEA;
 }
-tr.WR {
+tr.WR, td.WR {
   background-color: #9DF2A7;
 }
-tr.DEF {
+tr.DEF, td.DEF {
   background-color: #CDBE70;
 }
-tr.TE {
+tr.TE, td.TE {
   background-color: #F2E09D;
 }
-tr.PK {
+tr.PK. tr.PK {
   background-color: #E99DF2;
 }
 #draftboard th {
