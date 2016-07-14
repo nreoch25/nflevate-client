@@ -8,6 +8,13 @@ class Players extends Component {
   componentWillMount() {
     this.props.fetchPlayers();
   }
+  confirmPick(player) {
+    window.bootbox.confirm(`Are you sure you want to draft ${player.pos} - ${player.name} on ${player.team}`, function(result) {
+      if(result === true) {
+        this.props.draftPick(player);
+      }
+    }.bind(this));
+  }
   parsePick(pick) {
     let playerElements = pick.getElementsByTagName("td");
     let draftPickObject = {
@@ -17,7 +24,7 @@ class Players extends Component {
       "team": playerElements[3].innerText,
       "bye": playerElements[4].innerText
     }
-    this.props.draftPick(draftPickObject);
+    this.confirmPick(draftPickObject);
   }
   pickPlayer(evt) {
     if(evt.currentTarget.parentNode.parentNode.id === "players_draft") {
