@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPlayers } from "../actions/players";
+import { fetchPlayers, removePlayer } from "../actions/players";
 import { draftPick } from "../actions/draft";
 
 class Players extends Component {
@@ -12,6 +12,7 @@ class Players extends Component {
     window.bootbox.confirm(`Are you sure you want to draft ${player.pos} - ${player.name} on ${player.team}`, function(result) {
       if(result === true) {
         this.props.draftPick(player);
+        this.props.removePlayer(player);
       }
     }.bind(this));
   }
@@ -80,4 +81,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPlayers, draftPick })(Players);
+export default connect(mapStateToProps, { fetchPlayers, draftPick, removePlayer })(Players);

@@ -19,6 +19,19 @@ export function fetchPlayers() {
   }
 }
 
+export function removePlayer(pick) {
+  let newPlayers = [];
+  return(dispatch) => {
+    newPlayers = players.filter((player, i) => {
+      return player.name !== pick.name;
+    });
+    dispatch({
+      type: FETCH_PLAYERS,
+      payload: newPlayers
+    });
+  }
+}
+
 export function fetchPlayersByPosition(pos) {
   let position = pos.toLowerCase();
   let newPlayers = [];
