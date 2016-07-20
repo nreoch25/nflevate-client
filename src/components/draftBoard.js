@@ -30,7 +30,8 @@ class DraftBoard extends Component {
     if(typeof this.props.draft.draftedPicks !== "undefined") {
       let currentRound = this.props.draft.position.round;
       let currentPick = this.props.draft.position.pick;
-      if(currentRound === 1 && currentPick === 1) {
+      // TODO display reverse table for round 2
+      if(currentRound === 1 && currentPick <= 10) {
         return (
           <tr id={`rd${currentRound}`}>
             <th>1</th>

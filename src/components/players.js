@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPlayers, removePlayer } from "../actions/players";
-import { draftPick } from "../actions/draft";
+import { draftPick, updatePickPosition } from "../actions/draft";
 
 class Players extends Component {
 
@@ -14,6 +14,7 @@ class Players extends Component {
         this.props.draftPick(player);
         this.props.removePlayer(player);
         // TODO increment draft pick
+        this.props.updatePickPosition();
       }
     }.bind(this));
   }
@@ -82,4 +83,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPlayers, draftPick, removePlayer })(Players);
+export default connect(mapStateToProps, { fetchPlayers, draftPick, removePlayer, updatePickPosition })(Players);

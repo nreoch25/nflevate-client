@@ -4,6 +4,7 @@ import { FETCH_PICK_POSITION, FETCH_DRAFTED_PICKS } from "./types";
 const API_URL = config.API_URL;
 let pickPosition = { round: 1, pick: 1 };
 let draftedPlayers = [];
+const picksPerRound = 10;
 
 function fetchDraftedPicks() {
   return (dispatch) => {
@@ -28,4 +29,22 @@ export function draftPick(pick) {
   return (dispatch) => {
     dispatch(fetchDraftedPicks());
   }
+}
+
+export function updatePickPosition() {
+  return(dispatch) => {
+    if(pickPosition.pick % picksPerRound === 0) {
+      console.log("Increment Round");
+      pickPosition.round++;
+      pickPosition.pick = 1;
+    } else {
+      console.log(pickPosition.pick);
+      pickPosition.pick++;
+    }
+    dispatch({
+      type: FETCH_PICK_POSITION,
+      payload: pickPosition
+    })
+  }
+
 }

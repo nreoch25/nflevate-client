@@ -23,9 +23,12 @@ export function fetchPlayers() {
 export function removePlayer(pick) {
   let newPlayers = [];
   return(dispatch) => {
+    //remove the picked player
     newPlayers = players.filter((player, i) => {
       return player.name !== pick.name;
     });
+    //update the players array
+    players = newPlayers;
     dispatch({
       type: FETCH_PLAYERS,
       payload: newPlayers
