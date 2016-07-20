@@ -18,7 +18,7 @@ import { AUTH_USER } from "./actions/types";
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("nflevate_token");
 
 // If we have a token, consider the user to be signed in
 if(token) {
@@ -27,7 +27,6 @@ if(token) {
 }
 
 browserHistory.listen((evt) => {
-  console.log("listen");
   const currentNav = evt.pathname.replace("/", "");
   const activeNav = ( currentNav === "" ) ? "home" : currentNav;
   window.jQuery("#app_nav li").removeClass("active");

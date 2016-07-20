@@ -1,13 +1,14 @@
 import axios from "axios";
 import { FETCH_PLAYERS, FETCH_PLAYERS_BY_POSITION } from "./types";
-const API_URL = "http://localhost:8000";
+import config from "../../config";
+const API_URL = config.API_URL;
 let players = [];
 
 export function fetchPlayers() {
   console.log("fetch");
   return(dispatch) => {
     axios.get(`${API_URL}/players`, {
-      headers: { authorization: localStorage.getItem("token") }
+      headers: { authorization: localStorage.getItem("nflevate_token") }
     })
       .then(response => {
         players = response.data;
@@ -33,7 +34,14 @@ export function removePlayer(pick) {
 }
 
 export function fetchPlayersByPosition(pos) {
-  let position = pos.toLowerCase();
+  let position;
+  if(pos === "DEF") {
+    position = "dst";
+  } else if(pos === "PK") {
+    position = "k";
+  } else {
+    position = pos.toLowerCase();
+  }
   let newPlayers = [];
   return(dispatch) => {
     if( position === "all" ) {
@@ -43,6 +51,7 @@ export function fetchPlayersByPosition(pos) {
         return player.pos === position;
       });
     }
+    console.log(newPlayers);
     dispatch({
       type: FETCH_PLAYERS_BY_POSITION,
       payload: newPlayers

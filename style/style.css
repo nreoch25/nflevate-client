@@ -33,13 +33,13 @@ tr.RB, td.RB {
 tr.WR, td.WR {
   background-color: #9DF2A7;
 }
-tr.DEF, td.DEF {
+tr.DST, td.DST {
   background-color: #CDBE70;
 }
 tr.TE, td.TE {
   background-color: #F2E09D;
 }
-tr.PK. tr.PK {
+tr.K, td.K {
   background-color: #E99DF2;
 }
 #draftboard th {

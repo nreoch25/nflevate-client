@@ -1,7 +1,8 @@
 import axios from "axios";
 import { browserHistory } from "react-router";
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from "./types";
-const API_URL = "http://localhost:8000";
+import config from "../../config";
+const API_URL = config.API_URL;
 
 export function signinUser({ email, password }) {
   return (dispatch) => {
@@ -12,7 +13,7 @@ export function signinUser({ email, password }) {
         // - Update state to indicate user is authenticated
         dispatch({ type: AUTH_USER });
         // - Save the JWT token
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("nflevate_token", response.data.token);
         // - Redirect to the route "/feature"
         browserHistory.push("/draft");
       })
@@ -29,8 +30,8 @@ export function signupUser({ email, password }) {
     axios.post(`${API_URL}/signup`, { email, password })
       .then(response => {
         dispatch({ type: AUTH_USER });
-        localStorage.setItem("token", response.data.token);
-        browserHistory.push("/feature");
+        localStorage.setItem("nflevate_token", response.data.token);
+        browserHistory.push("/draft");
       })
       .catch(response => {
         dispatch(authError(response.data.error));
@@ -47,7 +48,7 @@ export function authError(error) {
 
 export function signoutUser() {
   console.log("signout");
-  localStorage.removeItem("token");
+  localStorage.removeItem("nflevate_token");
   return {
     type: UNAUTH_USER
   };

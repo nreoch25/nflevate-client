@@ -1,6 +1,7 @@
 import axios from "axios";
-const API_URL = "http://localhost:8000";
+import config from "../../config";
 import { FETCH_PICK_POSITION, FETCH_DRAFTED_PICKS } from "./types";
+const API_URL = config.API_URL;
 let pickPosition = { round: 1, pick: 1 };
 let draftedPlayers = [];
 
