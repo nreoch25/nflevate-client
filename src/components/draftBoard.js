@@ -77,9 +77,8 @@ class DraftBoard extends Component {
       let draftRounds = [];
       // TODO display reverse table for round 2
       for(var i = 1; i <= currentRound; i++) {
-        let classNM = (i % 2 == 0) ? "evenRow" : "oddRow";
         draftRounds.push(
-          <tr key={i} id={`rd${i}`} className={classNM}>
+          <tr key={i} id={`rd${i}`}>
             <th>{i}</th>
               { this.getDraftedPicks(i) }
           </tr>
