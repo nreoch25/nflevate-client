@@ -15,9 +15,7 @@ class Draft extends Component {
             <RankingsNav />
             <Players type="draft" />
           </div>
-          <div className="col-sm-6">
-            <p>Chat here</p>
-          </div>
+          <div className="col-sm-6"></div>
         </div>
       </div>
     );
