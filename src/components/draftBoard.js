@@ -71,7 +71,26 @@ class DraftBoard extends Component {
     return draftedPicks;
   }
   getDraftBoard() {
-    if(typeof this.props.draft.draftedPicks !== "undefined") {
+    let draftBoard = [];
+    for(var i = 1; i <= 17; i++) {
+      draftBoard.push(
+        <tr id={`rd${i}`}>
+          <th>{i}</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      );
+    }
+    return draftBoard;
+    /*if(typeof this.props.draft.draftedPicks !== "undefined") {
       let currentRound = this.props.draft.position.round;
       let currentPick = this.props.draft.position.pick;
       let draftRounds = [];
@@ -85,7 +104,7 @@ class DraftBoard extends Component {
         );
       }
       return draftRounds;
-    }
+    }*/
   }
   render() {
     let curPick = this.getPickPosition()
