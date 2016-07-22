@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPickPosition } from "../actions/draft";
+import DraftRow from "./draftRow";
 
 class DraftBoard extends Component {
   componentDidMount() {
@@ -9,48 +10,10 @@ class DraftBoard extends Component {
   getPickPosition() {
     if(typeof this.props.draft.position.round !== "undefined") {
       return `Round ${this.props.draft.position.round} - Pick ${this.props.draft.position.pick}`;
+      // TODO HANDLE ATTACHING PICKS TO TABLE BASED ON CELL IDs
     }
   }
-  getIndex(rd) {
-    switch(rd) {
-      case 1:
-        return { start: 0, finish: 10 };
-      case 2:
-        return { start: 10, finish: 20 };
-      case 3:
-        return { start: 20, finish: 30 };
-      case 4:
-        return { start: 30, finish: 40 };
-      case 5:
-        return { start: 40, finish: 50 };
-      case 6:
-        return { start: 50, finish: 60 };
-      case 7:
-        return { start: 60, finish: 70 };
-      case 8:
-        return { start: 70, finish: 80 };
-      case 9:
-        return { start: 80, finish: 90 };
-      case 10:
-        return { start: 90, finish: 100 };
-      case 11:
-        return { start: 100, finish: 110 };
-      case 12:
-        return { start: 110, finish: 120 };
-      case 13:
-        return { start: 120, finish: 130 };
-      case 14:
-        return { start: 130, finish: 140 };
-      case 15:
-        return { start: 140, finish: 150 };
-      case 16:
-        return { start: 150, finish: 160 };
-      case 17:
-        return { start: 160, finish: 170 };
-      default:
-        break;
-    }
-  }
+
   getDraftedPicks(currentRound) {
     if(typeof this.props.draft.draftedPicks === "undefined" || this.props.draft.draftedPicks.length === 0) {return};
     let draftPicks = this.props.draft.draftedPicks;
@@ -71,40 +34,13 @@ class DraftBoard extends Component {
     return draftedPicks;
   }
   getDraftBoard() {
-    let draftBoard = [];
+    let draftBoard = []
     for(var i = 1; i <= 17; i++) {
       draftBoard.push(
-        <tr id={`rd${i}`}>
-          <th>{i}</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        <DraftRow key={i} round={i} />
       );
     }
     return draftBoard;
-    /*if(typeof this.props.draft.draftedPicks !== "undefined") {
-      let currentRound = this.props.draft.position.round;
-      let currentPick = this.props.draft.position.pick;
-      let draftRounds = [];
-      // TODO display reverse table for round 2
-      for(var i = 1; i <= currentRound; i++) {
-        draftRounds.push(
-          <tr key={i} id={`rd${i}`}>
-            <th>{i}</th>
-              { this.getDraftedPicks(i) }
-          </tr>
-        );
-      }
-      return draftRounds;
-    }*/
   }
   render() {
     let curPick = this.getPickPosition()
