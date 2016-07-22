@@ -9,12 +9,15 @@ class DraftBoard extends Component {
   }
   getPickPosition() {
     if(typeof this.props.draft.position.round !== "undefined") {
-      console.log(this.props.draft.position);
+      if(typeof this.currentPick !== "undefined") {
+        if(this.props.draft.position.overall > this.currentPick) {
+          console.log("UPDATE DRAFT BOARD", this.props.draft.position.overall, this.currentPick);
+          // TODO UPDATE draftboard based on the overall position property
+        }
+      }
+      this.currentPick = this.props.draft.position.overall;
       return `Round ${this.props.draft.position.round} - Pick ${this.props.draft.position.pick}`;
     }
-  }
-  updateDraftBoard() {
-    if(typeof this.props.draft.draftedPicks === "undefined" || this.props.draft.draftedPicks.length === 0) {return};
   }
   getDraftedPicks(currentRound) {
     if(typeof this.props.draft.draftedPicks === "undefined" || this.props.draft.draftedPicks.length === 0) {return};
@@ -45,8 +48,7 @@ class DraftBoard extends Component {
     return draftBoard;
   }
   render() {
-    let curPick = this.getPickPosition()
-    { this.updateDraftBoard() }
+    let curPick = this.getPickPosition();
     return(
       <div>
         <div className="well well-sm"><strong>{curPick}</strong></div>
