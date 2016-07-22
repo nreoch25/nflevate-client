@@ -9,11 +9,13 @@ class DraftBoard extends Component {
   }
   getPickPosition() {
     if(typeof this.props.draft.position.round !== "undefined") {
+      console.log(this.props.draft.position);
       return `Round ${this.props.draft.position.round} - Pick ${this.props.draft.position.pick}`;
-      // TODO HANDLE ATTACHING PICKS TO TABLE BASED ON CELL IDs
     }
   }
-
+  updateDraftBoard() {
+    if(typeof this.props.draft.draftedPicks === "undefined" || this.props.draft.draftedPicks.length === 0) {return};
+  }
   getDraftedPicks(currentRound) {
     if(typeof this.props.draft.draftedPicks === "undefined" || this.props.draft.draftedPicks.length === 0) {return};
     let draftPicks = this.props.draft.draftedPicks;
@@ -44,6 +46,7 @@ class DraftBoard extends Component {
   }
   render() {
     let curPick = this.getPickPosition()
+    { this.updateDraftBoard() }
     return(
       <div>
         <div className="well well-sm"><strong>{curPick}</strong></div>

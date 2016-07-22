@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "../../config";
 import { FETCH_PICK_POSITION, FETCH_DRAFTED_PICKS } from "./types";
 const API_URL = config.API_URL;
-let pickPosition = { round: 1, pick: 1 };
+let pickPosition = { round: 1, pick: 1, overall: 0 };
 let draftedPlayers = [];
 const picksPerRound = 10;
 
@@ -35,10 +35,11 @@ export function updatePickPosition() {
   return(dispatch) => {
     if(pickPosition.pick % picksPerRound === 0) {
       console.log("Increment Round");
+      pickPosition.overall++;
       pickPosition.round++;
       pickPosition.pick = 1;
     } else {
-      console.log(pickPosition.pick);
+      pickPosition.overall++;
       pickPosition.pick++;
     }
     dispatch({
