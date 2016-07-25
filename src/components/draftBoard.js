@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { fetchPickPosition } from "../actions/draft";
 import DraftRow from "./draftRow";
@@ -6,13 +7,24 @@ import DraftRow from "./draftRow";
 class DraftBoard extends Component {
   componentDidMount() {
     this.props.fetchPickPosition();
+    //TODO check if draft in progress and redisplay list
+    //loop through this.props.draft.draftedPicks
+  }
+  updateDraftBoard(cellNum) {
+    let draftCell = document.getElementById(`cell${cellNum}`);
+    let playerUpdate = this.props.draft.draftedPicks[cellNum - 1];
+    draftCell.className = playerUpdate.pos;
+    let cellMarkup = `<span>${playerUpdate.name}</span><br />`;
+    cellMarkup += `<span>${playerUpdate.pos}</span>`;
+    cellMarkup += `<span> ${playerUpdate.team}</span>`;
+    cellMarkup += `<span> ${playerUpdate.bye}</span>`;
+    draftCell.innerHTML = cellMarkup;
   }
   getPickPosition() {
     if(typeof this.props.draft.position.round !== "undefined") {
       if(typeof this.currentPick !== "undefined") {
         if(this.props.draft.position.overall > this.currentPick) {
-          console.log("UPDATE DRAFT BOARD", this.props.draft.position.overall, this.currentPick);
-          // TODO UPDATE draftboard based on the overall position property
+          this.updateDraftBoard(this.props.draft.position.overall);
         }
       }
       this.currentPick = this.props.draft.position.overall;

@@ -47,11 +47,11 @@ class DraftRow extends Component {
     let rdType = ( rd % 2 == 0 ) ? "even" : "odd";
     if(rdType === "odd") {
       for(var i = pickIndex.start; i <= pickIndex.finish; i++) {
-        draftCells.push(<td ref={`cell${i}`} id={`cell${i}`} key={i}></td>);
+        draftCells.push(<td id={`cell${i}`} key={i}></td>);
       }
     } else if(rdType = "even") {
       for(var i = pickIndex.finish; i >= pickIndex.start; i--) {
-        draftCells.push(<td ref={`cell${i}`} id={`cell${i}`} key={i}></td>);
+        draftCells.push(<td id={`cell${i}`} key={i}></td>);
       }
     }
 

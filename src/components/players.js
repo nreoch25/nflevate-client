@@ -13,7 +13,6 @@ class Players extends Component {
       if(result === true) {
         this.props.draftPick(player);
         this.props.removePlayer(player);
-        // TODO increment draft pick
         this.props.updatePickPosition();
       }
     }.bind(this));
