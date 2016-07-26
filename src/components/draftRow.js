@@ -60,7 +60,7 @@ class DraftRow extends Component {
   render() {
     return (
       <tr key={this.props.round} id={`rd${this.props.round}`}>
-        <th>{this.props.round}</th>
+        <th id={`head${this.props.round}`}>{this.props.round}</th>
           { this.getDraftRow(this.props.round) }
       </tr>
     );

@@ -38,6 +38,13 @@ export function updatePickPosition() {
       pickPosition.overall++;
       pickPosition.round++;
       pickPosition.pick = 1;
+      //increment draftboard round
+      document.getElementById(`rd${pickPosition.round}`).style.display = "table-row";
+      document.getElementById(`head${pickPosition.round}`).style.display = "table-cell";
+      let rowCells = document.querySelectorAll(`tr#rd${pickPosition.round} td`);
+      rowCells.forEach((cell) => {
+        cell.style.display = "table-cell";
+      });
     } else {
       pickPosition.overall++;
       pickPosition.pick++;

@@ -12,6 +12,7 @@ class DraftBoard extends Component {
   }
   updateDraftBoard(cellNum) {
     let draftCell = document.getElementById(`cell${cellNum}`);
+    draftCell.style.display = "table-cell";
     let playerUpdate = this.props.draft.draftedPicks[cellNum - 1];
     draftCell.className = playerUpdate.pos;
     let cellMarkup = `<span>${playerUpdate.name}</span><br />`;
