@@ -47,4 +47,17 @@ tr.K, td.K {
 }
 #draftboard tbody tr {
   height: 70px;
+  display: none;
+}
+#draftboard tbody tr td, #draftboard tbody tr th {
+  display:none;
+}
+#draftboard tbody tr th#head1 {
+  display: table-cell;
+}
+#draftboard tbody tr#rd1 {
+  display: table-row;
+}
+#draftboard tbody tr#rd1 td{
+  display: table-cell;
 }

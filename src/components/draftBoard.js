@@ -32,25 +32,6 @@ class DraftBoard extends Component {
       return `Round ${this.props.draft.position.round} - Pick ${this.props.draft.position.pick}`;
     }
   }
-  getDraftedPicks(currentRound) {
-    if(typeof this.props.draft.draftedPicks === "undefined" || this.props.draft.draftedPicks.length === 0) {return};
-    let draftPicks = this.props.draft.draftedPicks;
-    let draftedPicks = [];
-    let pickIndex = this.getIndex(currentRound);
-    for(var i = pickIndex.start; i < pickIndex.finish; i++ ) {
-      if(typeof draftPicks[i] === "undefined") { break; }
-      draftedPicks.push(
-        <td key={i} className={draftPicks[i].pos}>
-          <span>{draftPicks[i].name}</span>
-          <br />
-          <span>{draftPicks[i].pos}</span>
-          <span> ({draftPicks[i].team})</span>
-          <span> {draftPicks[i].bye}</span>
-        </td>
-      );
-    }
-    return draftedPicks;
-  }
   getDraftBoard() {
     let draftBoard = []
     for(var i = 1; i <= 17; i++) {
