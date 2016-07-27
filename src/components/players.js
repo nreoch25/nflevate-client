@@ -6,7 +6,9 @@ import { draftPick, updatePickPosition } from "../actions/draft";
 class Players extends Component {
 
   componentWillMount() {
-    this.props.fetchPlayers();
+    if(typeof this.props.players === "undefined") {
+      this.props.fetchPlayers();
+    }
   }
   confirmPick(player) {
     window.bootbox.confirm(`Are you sure you want to draft ${player.pos} - ${player.name} on ${player.team}`, function(result) {
