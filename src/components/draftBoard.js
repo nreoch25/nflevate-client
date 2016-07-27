@@ -9,6 +9,28 @@ class DraftBoard extends Component {
     this.props.fetchPickPosition();
     //TODO check if draft in progress and redisplay list
     //loop through this.props.draft.draftedPicks
+    if(typeof this.props.draft.draftedPicks !== "undefined") {
+      if(this.props.draft.draftedPicks.length > 0) {
+        this.displayDraftRows();
+        this.props.draft.draftedPicks.map((pick, index) => {
+          let cellNum = index + 1;
+          this.updateDraftBoard(cellNum);
+        });
+      }
+    }
+  }
+  displayDraftRows() {
+    let draftRound = this.props.draft.position.round;
+    if(draftRound === 1) { return; }
+    for(var i = 1; i <= draftRound; i++) {
+      //increment draftboard round
+      document.getElementById(`rd${i}`).style.display = "table-row";
+      document.getElementById(`head${i}`).style.display = "table-cell";
+      let rowCells = document.querySelectorAll(`tr#rd${i} td`);
+      rowCells.forEach((cell) => {
+        cell.style.display = "table-cell";
+      });
+    }
   }
   updateDraftBoard(cellNum) {
     let draftCell = document.getElementById(`cell${cellNum}`);
