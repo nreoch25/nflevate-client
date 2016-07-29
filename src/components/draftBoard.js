@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import localforage from "localforage";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { fetchPickPosition } from "../actions/draft";
@@ -6,6 +7,9 @@ import DraftRow from "./draftRow";
 
 class DraftBoard extends Component {
   componentDidMount() {
+    localforage.getItem('nflevate_draftBoard', function(err, response) {
+      console.log("LOCALFORAGE", JSON.parse(response)); 
+    });
     this.props.fetchPickPosition();
     //TODO check if draft in progress and redisplay list
     //loop through this.props.draft.draftedPicks

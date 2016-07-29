@@ -6,6 +6,8 @@ import { draftPick, updatePickPosition } from "../actions/draft";
 class Players extends Component {
 
   componentWillMount() {
+    // TODO create a Rankings component
+    // seperate this from the Rankings page
     if(typeof this.props.players === "undefined") {
       this.props.fetchPlayers();
     }

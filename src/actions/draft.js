@@ -1,4 +1,5 @@
 import axios from "axios";
+import localforage from "localforage";
 import config from "../../config";
 import { FETCH_PICK_POSITION, FETCH_DRAFTED_PICKS } from "./types";
 const API_URL = config.API_URL;
@@ -12,6 +13,12 @@ function fetchDraftedPicks() {
       type: FETCH_DRAFTED_PICKS,
       payload: draftedPlayers
     });
+  }
+}
+
+export function storeDraftBoard() {
+  return (dispatch) => {
+    localforage.setItem('nflevate_draftBoard', JSON.stringify(draftedPlayers));
   }
 }
 
