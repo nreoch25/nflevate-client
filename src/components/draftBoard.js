@@ -7,9 +7,6 @@ import DraftRow from "./draftRow";
 
 class DraftBoard extends Component {
   componentDidMount() {
-    localforage.getItem('nflevate_draftBoard', function(err, response) {
-      console.log("LOCALFORAGE", JSON.parse(response)); 
-    });
     this.props.fetchPickPosition();
     //TODO check if draft in progress and redisplay list
     //loop through this.props.draft.draftedPicks
@@ -19,6 +16,11 @@ class DraftBoard extends Component {
         this.props.draft.draftedPicks.map((pick, index) => {
           let cellNum = index + 1;
           this.updateDraftBoard(cellNum);
+        });
+      } else {
+        localforage.getItem('nflevate_draftBoard', function(err, response) {
+          let draftStorage = JSON.parse(response);
+          console.log("LOCALFORAGE", draftStorage);
         });
       }
     }
