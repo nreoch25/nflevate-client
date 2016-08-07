@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import localforage from "localforage";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
-import { fetchPickPosition } from "../actions/draft";
+import { fetchPickPosition, updateFromStorage } from "../actions/draft";
 import DraftRow from "./draftRow";
 
 class DraftBoard extends Component {
@@ -18,12 +18,21 @@ class DraftBoard extends Component {
           this.updateDraftBoard(cellNum);
         });
       } else {
-        localforage.getItem('nflevate_draftBoard', function(err, response) {
-          let draftStorage = JSON.parse(response);
-          console.log("LOCALFORAGE", draftStorage);
+        localforage.getItem("nflevate_draftBoard", (err, response) => {
+          let storageItems = JSON.parse(response);
+          if(storageItems.length > 0) {
+            localforage.getItem("nflevate_position", (err, response) => {
+              let position = JSON.parse(response);
+              this.props.updateFromStorage(storageItems, position, this);
+            });
+          }
         });
       }
     }
+  }
+  updateFromStorage() {
+    console.log(this.props.draft);
+    // TODO update draftboard with localforage picks
   }
   displayDraftRows() {
     let draftRound = this.props.draft.position.round;
@@ -103,4 +112,4 @@ function mapStateToProps(state) {
   return { draft: state.draft }
 }
 
-export default connect(mapStateToProps, { fetchPickPosition })(DraftBoard);
+export default connect(mapStateToProps, { fetchPickPosition, updateFromStorage })(DraftBoard);

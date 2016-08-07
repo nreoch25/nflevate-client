@@ -16,9 +16,18 @@ function fetchDraftedPicks() {
   }
 }
 
+export function updateFromStorage(picks, position, draftBoard) {
+  return(dispatch) => {
+    dispatch({type: FETCH_DRAFTED_PICKS, payload: picks});
+    dispatch({type: FETCH_PICK_POSITION, payload: position});
+    draftBoard.updateFromStorage();
+  }
+}
+
 export function storeDraftBoard() {
   return (dispatch) => {
-    localforage.setItem('nflevate_draftBoard', JSON.stringify(draftedPlayers));
+    localforage.setItem("nflevate_draftBoard", JSON.stringify(draftedPlayers));
+    localforage.setItem("nflevate_position", JSON.stringify(pickPosition));
   }
 }
 
