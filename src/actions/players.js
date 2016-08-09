@@ -5,18 +5,24 @@ const API_URL = config.API_URL;
 let players = [];
 
 export function fetchPlayers() {
-  console.log("fetch");
   return(dispatch) => {
-    axios.get(`${API_URL}/players`, {
-      headers: { authorization: localStorage.getItem("nflevate_token") }
-    })
-      .then(response => {
-        players = response.data;
-        dispatch({
-          type: FETCH_PLAYERS,
-          payload: response.data
+    if(players.length === 0) {
+      axios.get(`${API_URL}/players`, {
+        headers: { authorization: localStorage.getItem("nflevate_token") }
+      })
+        .then(response => {
+          players = response.data;
+          dispatch({
+            type: FETCH_PLAYERS,
+            payload: response.data
+          });
         });
+    } else {
+      dispatch({
+        type: FETCH_PLAYERS,
+        payload: players
       });
+    }
   }
 }
 

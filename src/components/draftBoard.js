@@ -19,20 +19,31 @@ class DraftBoard extends Component {
         });
       } else {
         localforage.getItem("nflevate_draftBoard", (err, response) => {
-          let storageItems = JSON.parse(response);
-          if(storageItems.length > 0) {
-            localforage.getItem("nflevate_position", (err, response) => {
-              let position = JSON.parse(response);
-              this.props.updateFromStorage(storageItems, position, this);
-            });
+          if(response) {
+            let storageItems = JSON.parse(response);
+            if(storageItems.length > 0) {
+              localforage.getItem("nflevate_position", (err, response) => {
+                let position = JSON.parse(response);
+                this.props.updateFromStorage(storageItems, position, this);
+              });
+            }
           }
+          // TODO persist remaining players with localforage
         });
       }
     }
   }
   updateFromStorage() {
     console.log(this.props.draft);
-    // TODO update draftboard with localforage picks
+    if(typeof this.props.draft.draftedPicks !== "undefined") {
+      if(this.props.draft.draftedPicks.length > 0) {
+        this.displayDraftRows();
+        this.props.draft.draftedPicks.map((pick, index) => {
+          let cellNum = index + 1;
+          this.updateDraftBoard(cellNum);
+        });
+      }
+    }
   }
   displayDraftRows() {
     let draftRound = this.props.draft.position.round;

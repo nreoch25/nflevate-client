@@ -18,8 +18,10 @@ function fetchDraftedPicks() {
 
 export function updateFromStorage(picks, position, draftBoard) {
   return(dispatch) => {
-    dispatch({type: FETCH_DRAFTED_PICKS, payload: picks});
-    dispatch({type: FETCH_PICK_POSITION, payload: position});
+    pickPosition = position;
+    draftedPlayers = picks;
+    dispatch({type: FETCH_DRAFTED_PICKS, payload: draftedPlayers});
+    dispatch({type: FETCH_PICK_POSITION, payload: pickPosition});
     draftBoard.updateFromStorage();
   }
 }
