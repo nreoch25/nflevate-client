@@ -8,8 +8,6 @@ import DraftRow from "./draftRow";
 class DraftBoard extends Component {
   componentDidMount() {
     this.props.fetchPickPosition();
-    //TODO check if draft in progress and redisplay list
-    //loop through this.props.draft.draftedPicks
     if(typeof this.props.draft.draftedPicks !== "undefined") {
       if(this.props.draft.draftedPicks.length > 0) {
         this.displayDraftRows();
@@ -28,7 +26,6 @@ class DraftBoard extends Component {
               });
             }
           }
-          // TODO persist remaining players with localforage
         });
       }
     }
