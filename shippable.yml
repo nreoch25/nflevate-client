@@ -4,7 +4,7 @@ node_js:
 build:
   ci:
     - sudo pip install -U docker-compose
-    - docker-compose build --no-cache
+    - docker-compose build --no-cache && docker-compose up --force-recreate
     - docker ps
   post_ci:
     - docker build -t nreoch9/nflevate-client:latest .
