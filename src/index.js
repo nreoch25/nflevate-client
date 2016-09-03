@@ -12,6 +12,7 @@ import Signout from "./components/auth/signout";
 import Signup from "./components/auth/signup";
 import Draft from "./components/draft";
 import Rankings from "./components/rankings";
+import Results from "./components/results";
 import RequireAuth from "./components/auth/require_auth";
 import reducers from './reducers';
 import { AUTH_USER } from "./actions/types";
@@ -43,6 +44,7 @@ ReactDOM.render(
         <Route path="signup" component={Signup} />
         <Route path="draft" component={RequireAuth(Draft)} />
         <Route path="rankings" component={RequireAuth(Rankings)} />
+        <Route path="results" component={RequireAuth(Results)} />
       </Route>
     </Router>
   </Provider>

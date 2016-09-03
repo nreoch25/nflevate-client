@@ -48,6 +48,7 @@ class Header extends Component {
               <li id="nav-home"><Link to="/">Home</Link></li>
               <li id="nav-draft"><Link to="/draft">Draft</Link></li>
               <li id="nav-rankings"><Link to="/rankings">Rankings</Link></li>
+              <li id="nav-results"><Link to="/results">Results</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               {this.renderLinks()}

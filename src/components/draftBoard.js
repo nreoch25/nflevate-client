@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import localforage from "localforage";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
-import { fetchPickPosition, updateFromStorage } from "../actions/draft";
+import { fetchPickPosition, updateFromStorage, persistCompletedDraft } from "../actions/draft";
 import DraftRow from "./draftRow";
 
 class DraftBoard extends Component {
@@ -74,6 +74,9 @@ class DraftBoard extends Component {
         }
       }
       this.currentPick = this.props.draft.position.overall;
+      if(this.currentPick === 5) {
+        this.props.persistCompletedDraft();
+      }
       return `Round ${this.props.draft.position.round} - Pick ${this.props.draft.position.pick}`;
     }
   }
@@ -120,4 +123,4 @@ function mapStateToProps(state) {
   return { draft: state.draft }
 }
 
-export default connect(mapStateToProps, { fetchPickPosition, updateFromStorage })(DraftBoard);
+export default connect(mapStateToProps, { fetchPickPosition, updateFromStorage, persistCompletedDraft })(DraftBoard);

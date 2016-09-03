@@ -74,3 +74,25 @@ export function updatePickPosition() {
   }
 
 }
+
+export function getCompletedDrafts() {
+  return(dispatch) => {
+    axios.get(`${API_URL}/draft`, {
+      headers: { authorization: localStorage.getItem("nflevate_token") }
+    })
+    .then((response) => {
+      console.log(response.data);
+    });
+  }
+}
+
+export function persistCompletedDraft() {
+  return(dispatch) => {
+    axios.post(`${API_URL}/draft`,{ draft: draftedPlayers}, {
+      headers: { authorization: localStorage.getItem("nflevate_token") }
+    })
+    .then((response) => {
+      console.log(response.items);
+    });
+  }
+}
