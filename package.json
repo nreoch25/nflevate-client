@@ -9,7 +9,8 @@
     "build": "webpack --progress --colors",
     "start": "nodemon server.js --exec babel-node",
     "test": "echo tests",
-    "postinstall": "echo postinstall"
+    "postinstall": "echo postinstall",
+    "postbuild": "echo postbuild"
   },
   "author": "",
   "license": "ISC",
