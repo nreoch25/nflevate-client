@@ -7,10 +7,7 @@
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build": "webpack --progress --colors",
-    "start": "nodemon server.js --exec babel-node",
-    "test": "echo tests",
-    "postinstall": "echo postinstall",
-    "postbuild": "echo postbuild"
+    "start": "nodemon server.js --exec babel-node"
   },
   "author": "",
   "license": "ISC",
