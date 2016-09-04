@@ -1,7 +1,7 @@
 import axios from "axios";
 import localforage from "localforage";
 import config from "../../config";
-import { FETCH_PICK_POSITION, FETCH_DRAFTED_PICKS } from "./types";
+import { FETCH_PICK_POSITION, FETCH_DRAFTED_PICKS, FETCH_COMPLETED_DRAFTS } from "./types";
 const API_URL = config.API_URL;
 let pickPosition = { round: 1, pick: 1, overall: 0 };
 let draftedPlayers = [];
@@ -52,17 +52,21 @@ export function draftPick(pick) {
 export function updatePickPosition() {
   return(dispatch) => {
     if(pickPosition.pick % picksPerRound === 0) {
-      console.log("Increment Round");
-      pickPosition.overall++;
-      pickPosition.round++;
-      pickPosition.pick = 1;
-      //increment draftboard round
-      document.getElementById(`rd${pickPosition.round}`).style.display = "table-row";
-      document.getElementById(`head${pickPosition.round}`).style.display = "table-cell";
-      let rowCells = document.querySelectorAll(`tr#rd${pickPosition.round} td`);
-      rowCells.forEach((cell) => {
-        cell.style.display = "table-cell";
-      });
+      if(pickPosition.round < 17) {
+        console.log("Increment Round");
+        pickPosition.overall++;
+        pickPosition.round++;
+        pickPosition.pick = 1;
+        //increment draftboard round
+        document.getElementById(`rd${pickPosition.round}`).style.display = "table-row";
+        document.getElementById(`head${pickPosition.round}`).style.display = "table-cell";
+        let rowCells = document.querySelectorAll(`tr#rd${pickPosition.round} td`);
+        rowCells.forEach((cell) => {
+          cell.style.display = "table-cell";
+        });
+      } else {
+        pickPosition.overall++;
+      }
     } else {
       pickPosition.overall++;
       pickPosition.pick++;
@@ -81,7 +85,10 @@ export function getCompletedDrafts() {
       headers: { authorization: localStorage.getItem("nflevate_token") }
     })
     .then((response) => {
-      console.log(response.data);
+      dispatch({
+        type: FETCH_COMPLETED_DRAFTS,
+        payload: response.data
+      });
     });
   }
 }
@@ -92,7 +99,7 @@ export function persistCompletedDraft() {
       headers: { authorization: localStorage.getItem("nflevate_token") }
     })
     .then((response) => {
-      console.log(response.items);
+      console.log(response);
     });
   }
 }

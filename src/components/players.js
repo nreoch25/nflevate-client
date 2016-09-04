@@ -19,6 +19,9 @@ class Players extends Component {
         this.props.removePlayer(player);
         this.props.updatePickPosition();
       }
+      if(this.props.draft.position.overall === 170) {
+
+      }
     }.bind(this));
   }
   parsePick(pick) {
@@ -33,6 +36,11 @@ class Players extends Component {
     this.confirmPick(draftPickObject);
   }
   pickPlayer(evt) {
+    console.log(this.props.draft.position.overall);
+    if(this.props.draft.position.overall === 170) {
+      console.log("DRAFT OVER", this.props.draft.position.overall);
+      return;
+    }
     if(evt.currentTarget.parentNode.parentNode.id === "players_draft") {
       this.parsePick(evt.currentTarget);
     }
@@ -82,7 +90,8 @@ class Players extends Component {
 
 function mapStateToProps(state) {
   return {
-    players: state.players.players
+    players: state.players.players,
+    draft: state.draft
   }
 }
 

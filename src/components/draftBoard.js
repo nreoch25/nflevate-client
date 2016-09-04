@@ -57,14 +57,16 @@ class DraftBoard extends Component {
   }
   updateDraftBoard(cellNum) {
     let draftCell = document.getElementById(`cell${cellNum}`);
-    draftCell.style.display = "table-cell";
-    let playerUpdate = this.props.draft.draftedPicks[cellNum - 1];
-    draftCell.className = playerUpdate.pos;
-    let cellMarkup = `<span>${playerUpdate.name}</span><br />`;
-    cellMarkup += `<span>${playerUpdate.pos}</span>`;
-    cellMarkup += `<span> ${playerUpdate.team}</span>`;
-    cellMarkup += `<span> ${playerUpdate.bye}</span>`;
-    draftCell.innerHTML = cellMarkup;
+    if(draftCell) {
+      draftCell.style.display = "table-cell";
+      let playerUpdate = this.props.draft.draftedPicks[cellNum - 1];
+      draftCell.className = playerUpdate.pos;
+      let cellMarkup = `<span>${playerUpdate.name}</span><br />`;
+      cellMarkup += `<span>${playerUpdate.pos}</span>`;
+      cellMarkup += `<span> ${playerUpdate.team}</span>`;
+      cellMarkup += `<span> ${playerUpdate.bye}</span>`;
+      draftCell.innerHTML = cellMarkup;
+    }
   }
   getPickPosition() {
     if(typeof this.props.draft.position.round !== "undefined") {
@@ -73,11 +75,13 @@ class DraftBoard extends Component {
           this.updateDraftBoard(this.props.draft.position.overall);
         }
       }
-      this.currentPick = this.props.draft.position.overall;
-      if(this.currentPick === 5) {
+      if(this.props.draft.position.overall < 170) {
+        this.currentPick = this.props.draft.position.overall;
+        return `Round ${this.props.draft.position.round} - Pick ${this.props.draft.position.pick}`;
+      } else {
         this.props.persistCompletedDraft();
+        return "Draft Complete! Congratulations and Good Luck on the season!";
       }
-      return `Round ${this.props.draft.position.round} - Pick ${this.props.draft.position.pick}`;
     }
   }
   getDraftBoard() {
